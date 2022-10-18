@@ -1,6 +1,6 @@
 # go-lockfile
 
-[![GoPkg Widget]][GoPkg] [![Go Report Card](https://goreportcard.com/badge/github.com/ucloud/go-lockfile)](https://goreportcard.com/report/github.com/ucloud/go-lockfile)
+[![GoDoc](https://godoc.org/github.com/ucloud/go-lockfile?status.svg)](https://godoc.org/github.com/ucloud/go-lockfile) [![Go Report Card](https://goreportcard.com/badge/github.com/ucloud/go-lockfile)](https://goreportcard.com/report/github.com/ucloud/go-lockfile)
 
 A Linux go library to lock cooperating processes based on syscall [flock](https://man7.org/linux/man-pages/man2/flock.2.html).
 
