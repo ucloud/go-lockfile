@@ -72,7 +72,7 @@ func (lf *Lockfile) acquireLock(block bool) error {
 
 	// Linux system call: flock, see: https://man7.org/linux/man-pages/man2/flock.2.html
 	// This is an advisory lock that won't block file writing and reading.
-	// LOCK_EX: Place an exclusive lock.  Only one process may hold an exclusive lock for 
+	// LOCK_EX: Place an exclusive lock.  Only one process may hold an exclusive lock for
 	//          a given file at a given time.
 	// LOCK_NB: No block when the lock is busy.
 	flag := syscall.LOCK_EX

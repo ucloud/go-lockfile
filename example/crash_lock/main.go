@@ -28,6 +28,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	time.Sleep(time.Second*3)
+	time.Sleep(time.Second * 3)
 	panic("crashed")
 }
