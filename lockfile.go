@@ -1,3 +1,7 @@
+// Package lockfile is a Linux tool to lock cooperating processes based on syscall `flock`.
+// While a sync.Mutex helps against concurrency issues within a single process, this package
+// is designed to help against concurrency issues between cooperating processes.
+// This package can be only used in Linux, and cannot be used as a `sync.Mutex` in a single process.
 package lockfile
 
 import (
@@ -20,8 +24,11 @@ var (
 
 // Lockfile is a Linux signal file to implement cross-process locks. The file content
 // does not contain anything, it will be always overwritten.
+//
 // The Lockfile should be used in different process, it cannot be used as a mutex lock
-// in a single process.
+// in a single process. If you use it in a single process, the Lock and TryLock will
+// always success.
+//
 // If the process crashed, all its Lockfile will be released automatically, you donot
 // need to handle the deadlock situation.
 type Lockfile struct {
@@ -92,7 +99,7 @@ func (lf *Lockfile) acquireLock(block bool) error {
 // This method only needs to be called if you want to release the lock before process ends.
 func (lf *Lockfile) Unlock() error {
 	if lf.file == nil {
-		panic("please call TryLock before Unlock")
+		panic("please call TryLock or Lock before Unlock")
 	}
 	// Use LOCK_UN flag to release the flock.
 	err := syscall.Flock(lf.fd, syscall.LOCK_UN)
